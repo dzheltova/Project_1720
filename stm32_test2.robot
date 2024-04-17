@@ -1,8 +1,6 @@
 *** Settings ***
 Library    Process    #built-in library
-#создаем экземпляр класса JTAG с именем jtag_d
 Library    jtag.py      WITH NAME   jtag_d 
-#подключаем библиотеку для прошивки stm
 Library    flash_stm.py 
 
 Suite Setup  Open JTAG
@@ -81,7 +79,7 @@ Get GPIO State
     [Arguments]    ${pin}
     ${result}=    Run Process    gpio    read    ${pin}
     Log    all output: ${result.stdout}
-    [Return]    ${result.stdout}
+    Return    ${result.stdout}
     
 Close JTAG
     jtag_d.send    'RESET'
